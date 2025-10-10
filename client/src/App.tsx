@@ -1,16 +1,11 @@
-import { AppSidebar } from './components/app-sidebar';
-import { ChartAreaInteractive } from './components/chart-area-interactive';
-import { DataTable } from './components/data-table';
-import { SectionCards } from './components/section-cards';
-import { SiteHeader } from './components/site-header';
-import { SidebarInset, SidebarProvider } from './components/ui/sidebar';
+import { AppSidebar } from '@/components/app-sidebar';
+import { ChartAreaInteractive } from '@/components/chart-area-interactive';
+import { DataTable } from '@/components/data-table';
+import { SectionCards } from '@/components/section-cards';
+import { SiteHeader } from '@/components/site-header';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-/**
- * Root application component that centers its content and renders a Button labeled "Click me".
- *
- * @returns A JSX element representing the centered app layout
- */
-function App() {
+export default function Page() {
   return (
     <SidebarProvider
       style={
@@ -38,5 +33,3 @@ function App() {
     </SidebarProvider>
   );
 }
-
-export default App;
