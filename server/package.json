@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && tsc",
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:w": "nodemon -e ts --ignore dist/ --exec \"npm run build && npm start\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.3",
+    "express": "^5.1.0"
+  }
+}
