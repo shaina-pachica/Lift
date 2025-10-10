@@ -36,6 +36,17 @@ const buttonVariants = cva(
   },
 );
 
+/**
+ * Render a styled button element with configurable visual variant and size, optionally delegating rendering to its child element.
+ *
+ * @param className - Additional CSS classes to append to the computed button classes.
+ * @param variant - Visual variant to apply from `buttonVariants`.
+ * @param size - Size variant to apply from `buttonVariants`.
+ * @param asChild - When true, renders the component's child element instead of a `<button>`, preserving classes and forwarded props.
+ * @param props - Additional HTML attributes and event handlers forwarded to the rendered element.
+ *
+ * @returns A React element (`button` by default or the child element when `asChild` is true) with computed classes and forwarded props.
+ */
 function Button({
   className,
   variant,
