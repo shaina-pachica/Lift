@@ -17,10 +17,14 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.45.0"
   },
-"lint-staged": {
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,json,md,css,html}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
     "**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write ."
+      "prettier --write"
     ]
   }
 }
