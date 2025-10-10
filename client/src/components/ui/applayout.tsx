@@ -6,5 +6,5 @@ export default function AppLayout() {
         <main></main>
       </div>
     </>
-  )
+  );
 }
