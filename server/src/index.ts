@@ -1,11 +1,17 @@
 import express from 'express'
-const app = express();
-const port = 3000;
+
+import helmet from 'helmet'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const port = process.env.PORT || 3000
+const app = express()
+app.use(helmet())
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+  res.send('Hello world')
+})
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+  console.log(`Server running on http://localhost:${port}`)
+})
