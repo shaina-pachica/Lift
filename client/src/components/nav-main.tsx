@@ -50,7 +50,7 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <NavLink to={item.title.toLowerCase()}>
+              <NavLink to={item.url}>
                 <SidebarMenuButton
                   tooltip={item.title}
                   isActive={handleActive(currentPath, item.url)}
