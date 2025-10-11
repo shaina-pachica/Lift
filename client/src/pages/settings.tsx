@@ -2,9 +2,12 @@ export default function Settings() {
   return (
     <>
       <div className="px-4 lg:px-6">
-        <h1 className="w-full flex items-center justify-center">
-          Settings Page
-        </h1>
+        <div className="flex gap-2 items-center">
+          <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+        </div>
+        <b className="text-muted-foreground">
+          Manage your gym settings and preferences
+        </b>
       </div>
     </>
   );
