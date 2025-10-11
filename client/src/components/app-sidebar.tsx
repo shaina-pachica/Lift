@@ -21,6 +21,7 @@ import {
   UserCheck,
   Users,
 } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 const data = {
   user: {
@@ -31,27 +32,27 @@ const data = {
   navMain: [
     {
       title: 'Dashboard',
-      url: '#',
+      url: '/dashboard',
       icon: LayoutDashboard,
     },
     {
       title: 'Members',
-      url: '#',
+      url: '/members',
       icon: Users,
     },
     {
       title: 'Check-In',
-      url: '#',
+      url: '/check-in',
       icon: UserCheck,
     },
     {
       title: 'Payments',
-      url: '#',
+      url: '/payments',
       icon: CreditCard,
     },
     {
       title: 'Settings',
-      url: '#',
+      url: '/settings',
       icon: Settings,
     },
   ],
@@ -74,7 +75,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <span className="truncate font-bold">LIFT</span>
                 <span className="truncate text-xs">Gym Mangement</span>
               </div>
-              <a href="#"></a>
+              <NavLink to="/dashboard" />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

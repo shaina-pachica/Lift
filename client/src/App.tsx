@@ -1,36 +1,41 @@
-import { AppSidebar } from '@/components/app-sidebar';
-import { ChartAreaInteractive } from '@/components/chart-area-interactive';
-import { SectionCards } from '@/components/section-cards';
-import { SiteHeader } from '@/components/site-header';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
+import AppLayout from './components/ui/applayout';
 import { ThemeProvider } from './lib/ThemeContext';
-
+import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/query-core';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/dashboard';
+import Members from './pages/members';
+import Checkin from './pages/checkin';
+import Payments from './pages/payments';
+import Settings from './pages/settings';
 export default function App() {
+  const queryClient: QueryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+        gcTime: 1000 * 60 * 60 * 24,
+      },
+    },
+  });
   return (
-    <ThemeProvider>
-      <SidebarProvider
-        style={
-          {
-            '--sidebar-width': 'calc(var(--spacing) * 72)',
-            '--header-height': 'calc(var(--spacing) * 12)',
-          } as React.CSSProperties
-        }
-      >
-        <AppSidebar variant="inset" />
-        <SidebarInset>
-          <SiteHeader />
-          <div className="flex flex-1 flex-col">
-            <div className="@container/main flex flex-1 flex-col gap-2">
-              <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-                <SectionCards />
-                <div className="px-4 lg:px-6">
-                  <ChartAreaInteractive />
-                </div>
-              </div>
-            </div>
-          </div>
-        </SidebarInset>
-      </SidebarProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          <Route
+            element={
+              <ThemeProvider>
+                <AppLayout />
+              </ThemeProvider>
+            }
+          >
+            <Route element={<Dashboard />} path="/dashboard" />
+            <Route element={<Members />} path="/members" />
+            <Route element={<Checkin />} path="/check-in" />
+            <Route element={<Payments />} path="/payments" />
+            <Route element={<Settings />} path="/settings" />
+          </Route>
+        </Routes>
+      </Router>
+    </QueryClientProvider>
   );
 }
