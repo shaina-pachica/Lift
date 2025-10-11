@@ -22,7 +22,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { NavLink } from 'react-router-dom';
 
 export function NavUser({
   user,
@@ -92,12 +91,15 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <NavLink to="/login" onClick={() => sessionStorage.clear()}>
-              <DropdownMenuItem>
-                <IconLogout />
-                Log out
-              </DropdownMenuItem>
-            </NavLink>
+            <DropdownMenuItem
+              onClick={() => {
+                sessionStorage.clear();
+                window.location.href = '/login';
+              }}
+            >
+              <IconLogout />
+              Log out
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
