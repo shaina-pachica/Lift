@@ -16,15 +16,15 @@ import Settings from './pages/settings';
 import ProtectedRoute from './lib/protectedroute';
 import Login from './pages/login';
 import ThemedToaster from './lib/themedtoaster';
-export default function App() {
-  const queryClient: QueryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-        gcTime: 1000 * 60 * 60 * 24,
-      },
+const queryClient: QueryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+      gcTime: 1000 * 60 * 60 * 24,
     },
-  });
+  },
+});
+export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
