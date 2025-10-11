@@ -61,7 +61,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const currentUser = useUser();
-
+  const user = currentUser ?? { name: 'Guest', email: 'guest@example.com' };
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -87,7 +87,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={{ ...currentUser, avatar: '/avatars/shadcn.jpg' }} />
+        <NavUser user={{ ...user, avatar: '/avatars/shadcn.jpg' }} />
       </SidebarFooter>
     </Sidebar>
   );
