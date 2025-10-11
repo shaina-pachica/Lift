@@ -22,6 +22,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { NavLink } from 'react-router-dom';
 
 export function NavUser({
   user,
@@ -33,7 +34,6 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -92,10 +92,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <IconLogout />
-              Log out
-            </DropdownMenuItem>
+            <NavLink to="/login" onClick={() => sessionStorage.clear()}>
+              <DropdownMenuItem>
+                <IconLogout />
+                Log out
+              </DropdownMenuItem>
+            </NavLink>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
