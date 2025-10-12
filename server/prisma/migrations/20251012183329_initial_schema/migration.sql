@@ -43,7 +43,7 @@ CREATE TABLE "Member" (
 -- CreateTable
 CREATE TABLE "Walkin" (
     "id" SERIAL NOT NULL,
-    "geor_id" INTEGER NOT NULL,
+    "goer_id" INTEGER NOT NULL,
 
     CONSTRAINT "Walkin_pkey" PRIMARY KEY ("id")
 );
@@ -53,6 +53,7 @@ CREATE TABLE "Attendance" (
     "id" SERIAL NOT NULL,
     "check_in" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "check_out" TIMESTAMP(3) NOT NULL,
+    "goer_id" INTEGER NOT NULL,
 
     CONSTRAINT "Attendance_pkey" PRIMARY KEY ("id")
 );
@@ -76,6 +77,7 @@ CREATE TABLE "Payment" (
     "payment_method" "PaymentMethod" NOT NULL,
     "time" TIMESTAMP(3) NOT NULL,
     "membershipId" INTEGER,
+    "promoId" INTEGER,
 
     CONSTRAINT "Payment_pkey" PRIMARY KEY ("id")
 );
@@ -99,10 +101,16 @@ ALTER TABLE "Member" ADD CONSTRAINT "Member_goer_id_fkey" FOREIGN KEY ("goer_id"
 ALTER TABLE "Member" ADD CONSTRAINT "Member_account_id_fkey" FOREIGN KEY ("account_id") REFERENCES "Account"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Walkin" ADD CONSTRAINT "Walkin_geor_id_fkey" FOREIGN KEY ("geor_id") REFERENCES "Goer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Walkin" ADD CONSTRAINT "Walkin_goer_id_fkey" FOREIGN KEY ("goer_id") REFERENCES "Goer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Attendance" ADD CONSTRAINT "Attendance_goer_id_fkey" FOREIGN KEY ("goer_id") REFERENCES "Goer"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Membership" ADD CONSTRAINT "Membership_member_id_fkey" FOREIGN KEY ("member_id") REFERENCES "Member"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Payment" ADD CONSTRAINT "Payment_membershipId_fkey" FOREIGN KEY ("membershipId") REFERENCES "Membership"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Payment" ADD CONSTRAINT "Payment_promoId_fkey" FOREIGN KEY ("promoId") REFERENCES "Promo"("id") ON DELETE SET NULL ON UPDATE CASCADE;
