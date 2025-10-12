@@ -33,7 +33,6 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -92,7 +91,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                sessionStorage.clear();
+                window.location.href = '/login';
+              }}
+            >
               <IconLogout />
               Log out
             </DropdownMenuItem>

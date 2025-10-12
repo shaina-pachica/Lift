@@ -3,7 +3,7 @@ import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Moon } from 'lucide-react';
 import { Label } from './ui/label';
 import { Switch } from './ui/switch';
-import { useTheme } from '../lib/ThemeContext';
+import { useTheme } from '../lib/themecontext';
 import { useLocation } from 'react-router-dom';
 
 export function SiteHeader() {
