@@ -13,3 +13,110 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum GENDER {
+  FEMALE
+  MALE
+}
+
+enum PaymentMethod {
+  CASH
+  GCASH
+}
+
+enum SCOPE {
+  REGULAR
+  WALKIN
+  STUDENT
+}
+
+model Account {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String
+  password String
+  isAdmin  Boolean
+  Member   Member[]
+}
+
+model Goer {
+  id         Int          @id @default(autoincrement())
+  full_name  String
+  isStudent  Boolean
+  gender     GENDER
+  birth_date DateTime
+  phone      String?
+  email      String?
+  Member     Member[]
+  Walkin     Walkin[]
+  Attendance Attendance[]
+  Payment    Payment[]
+}
+
+model Member {
+  id         Int          @id @default(autoincrement())
+  goer_id    Int
+  account_id Int
+  goer       Goer         @relation(fields: [goer_id], references: [id])
+  account    Account      @relation(fields: [account_id], references: [id])
+  Membership Membership[]
+
+  @@unique([goer_id, account_id])
+  @@index([goer_id])
+  @@index([account_id])
+}
+
+model Walkin {
+  id      Int  @id @default(autoincrement())
+  goer_id Int
+  goer    Goer @relation(fields: [goer_id], references: [id])
+
+  @@index([goer_id])
+}
+
+model Attendance {
+  id        Int       @id @default(autoincrement())
+  check_in  DateTime  @default(now())
+  check_out DateTime?
+  goer_id   Int
+  goer      Goer      @relation(fields: [goer_id], references: [id])
+
+  @@index([goer_id])
+}
+
+model Membership {
+  id         Int       @id @default(autoincrement())
+  member_id  Int
+  months     Int
+  start_date DateTime
+  end_date   DateTime
+  member     Member    @relation(fields: [member_id], references: [id])
+  Payment    Payment[]
+}
+
+model Payment {
+  id             Int           @id @default(autoincrement())
+  goerId         Int
+  amount         Decimal       @db.Decimal(10, 2)
+  payment_method PaymentMethod
+  time           DateTime
+  Membership     Membership?   @relation(fields: [membershipId], references: [id])
+  Promo          Promo?        @relation(fields: [promoId], references: [id])
+  goer           Goer          @relation(fields: [goerId], references: [id])
+  membershipId   Int?
+  promoId        Int?
+
+  @@index([goerId])
+  @@index([membershipId])
+  @@index([promoId])
+}
+
+model Promo {
+  id         Int       @id @default(autoincrement())
+  title      String
+  discount   Int
+  start_date DateTime
+  end_date   DateTime
+  scope      SCOPE[]
+  Payment    Payment[]
+}
