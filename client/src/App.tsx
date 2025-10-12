@@ -16,6 +16,7 @@ import Settings from './pages/settings';
 import ProtectedRoute from './lib/protectedroute';
 import Login from './pages/login';
 import ThemedToaster from './lib/themedtoaster';
+import Promo from './pages/promo';
 const queryClient: QueryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -43,6 +44,7 @@ export default function App() {
               <Route element={<Checkin />} path="/check-in" />
               <Route element={<Payments />} path="/payments" />
               <Route element={<Settings />} path="/settings" />
+              <Route element={<Promo />} path="/promo" />
             </Route>
             <Route element={<Login />} path="/login" />
           </Routes>

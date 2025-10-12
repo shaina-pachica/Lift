@@ -17,6 +17,7 @@ import {
 import {
   CreditCard,
   Dumbbell,
+  Gem,
   LayoutDashboard,
   Settings,
   UserCheck,
@@ -50,6 +51,11 @@ const data = {
       title: 'Payments',
       url: '/payments',
       icon: CreditCard,
+    },
+    {
+      title: 'Promo',
+      url: '/promo',
+      icon: Gem,
     },
     {
       title: 'Settings',
