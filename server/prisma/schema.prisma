@@ -59,20 +59,26 @@ model Member {
   goer       Goer         @relation(fields: [goer_id], references: [id])
   account    Account      @relation(fields: [account_id], references: [id])
   Membership Membership[]
+  @@unique([goer_id, account_id])
+  @@index([goer_id])
+  @@index([account_id])
 }
 
 model Walkin {
   id      Int  @id @default(autoincrement())
   goer_id Int
   goer    Goer @relation(fields: [goer_id], references: [id])
+  @@index([goer_id])
 }
 
 model Attendance {
   id        Int      @id @default(autoincrement())
   check_in  DateTime @default(now())
-  check_out DateTime
+  check_out DateTime?
   goer_id   Int
   goer      Goer     @relation(fields: [goer_id], references: [id])
+
+  @@index([goer_id])
 }
 
 model Membership {
@@ -88,21 +94,25 @@ model Membership {
 model Payment {
   id             Int           @id @default(autoincrement())
   goer_id        Int
-  amount         Int
+  amount         Decimal @db.Numeric(10,2)
   payment_method PaymentMethod
   time           DateTime
   Membership     Membership?   @relation(fields: [membershipId], references: [id])
   Promo          Promo?        @relation(fields: [promoId], references: [id])
+  goer Goer @relation(fields:[goer_id], references: [id])
   membershipId   Int?
   promoId        Int?
+  @@index([goer_id])
+  @@index([membershipId])
+  @@index([promoId])
 }
 
 model Promo {
   id         Int       @id @default(autoincrement())
   title      String
   discount   Int
-  start_date String
-  end_date   String
+  start_date DateTime
+  end_date   DateTime
   scope      SCOPE[]
   Payment    Payment[]
 }
