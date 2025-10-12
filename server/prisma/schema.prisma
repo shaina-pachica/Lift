@@ -40,7 +40,7 @@ model Account {
 }
 
 model Goer {
-  id         Int      @id @default(autoincrement())
+  id         Int          @id @default(autoincrement())
   full_name  String
   isStudent  Boolean
   gender     GENDER
@@ -49,6 +49,7 @@ model Goer {
   email      String?
   Member     Member[]
   Walkin     Walkin[]
+  Attendance Attendance[]
 }
 
 model Member {
@@ -70,6 +71,8 @@ model Attendance {
   id        Int      @id @default(autoincrement())
   check_in  DateTime @default(now())
   check_out DateTime
+  goer_id   Int
+  goer      Goer     @relation(fields: [goer_id], references: [id])
 }
 
 model Membership {
@@ -89,14 +92,17 @@ model Payment {
   payment_method PaymentMethod
   time           DateTime
   Membership     Membership?   @relation(fields: [membershipId], references: [id])
+  Promo          Promo?        @relation(fields: [promoId], references: [id])
   membershipId   Int?
+  promoId        Int?
 }
 
 model Promo {
-  id         Int     @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   title      String
   discount   Int
   start_date String
   end_date   String
   scope      SCOPE[]
+  Payment    Payment[]
 }
