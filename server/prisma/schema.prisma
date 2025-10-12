@@ -50,6 +50,7 @@ model Goer {
   Member     Member[]
   Walkin     Walkin[]
   Attendance Attendance[]
+  Payment    Payment[]
 }
 
 model Member {
@@ -59,6 +60,7 @@ model Member {
   goer       Goer         @relation(fields: [goer_id], references: [id])
   account    Account      @relation(fields: [account_id], references: [id])
   Membership Membership[]
+
   @@unique([goer_id, account_id])
   @@index([goer_id])
   @@index([account_id])
@@ -68,15 +70,16 @@ model Walkin {
   id      Int  @id @default(autoincrement())
   goer_id Int
   goer    Goer @relation(fields: [goer_id], references: [id])
+
   @@index([goer_id])
 }
 
 model Attendance {
-  id        Int      @id @default(autoincrement())
-  check_in  DateTime @default(now())
+  id        Int       @id @default(autoincrement())
+  check_in  DateTime  @default(now())
   check_out DateTime?
   goer_id   Int
-  goer      Goer     @relation(fields: [goer_id], references: [id])
+  goer      Goer      @relation(fields: [goer_id], references: [id])
 
   @@index([goer_id])
 }
@@ -93,16 +96,17 @@ model Membership {
 
 model Payment {
   id             Int           @id @default(autoincrement())
-  goer_id        Int
-  amount         Decimal @db.Numeric(10,2)
+  goerId         Int
+  amount         Decimal       @db.Decimal(10, 2)
   payment_method PaymentMethod
   time           DateTime
   Membership     Membership?   @relation(fields: [membershipId], references: [id])
   Promo          Promo?        @relation(fields: [promoId], references: [id])
-  goer Goer @relation(fields:[goer_id], references: [id])
+  goer           Goer          @relation(fields: [goerId], references: [id])
   membershipId   Int?
   promoId        Int?
-  @@index([goer_id])
+
+  @@index([goerId])
   @@index([membershipId])
   @@index([promoId])
 }

@@ -10,9 +10,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run build && npm run start",
     "dev:w": "nodemon -e ts --ignore dist/ --exec \"npm run build && npm start\"",
-    "prisma:generate": "DOTENV_CONFIG_PATH=.env.local prisma generate",
-    "prisma:migrate": "DOTENV_CONFIG_PATH=.env.local prisma migrate dev",
-    "prisma:reset": "DOTENV_CONFIG_PATH=.env.local prisma migrate reset"
+    "prisma:generate": "dotenv -e .env.local -- prisma generate",
+    "prisma:migrate": "dotenv -e .env.local -- prisma migrate dev",
+    "prisma:reset": "dotenv -e .env.local -- prisma migrate reset"
   },
   "keywords": [],
   "author": "",
