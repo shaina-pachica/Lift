@@ -9,6 +9,7 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import type { LucideIcon } from 'lucide-react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export function NavMain({
   items,
@@ -19,6 +20,11 @@ export function NavMain({
     icon?: LucideIcon;
   }[];
 }) {
+  const handleActive = (currentPath: string, targetPath: string): boolean => {
+    return currentPath === targetPath;
+  };
+  const location = useLocation();
+  const currentPath = location.pathname;
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -44,10 +50,15 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
-              </SidebarMenuButton>
+              <NavLink to={item.title.toLowerCase()}>
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  isActive={handleActive(currentPath, item.url)}
+                >
+                  {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+                </SidebarMenuButton>
+              </NavLink>
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
