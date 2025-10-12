@@ -37,7 +37,7 @@ export function LoginForm({
   const navigate = useNavigate();
   const onSubmit = (data: LoginSchema) => {
     if (data.email === 'admin@lift.com' && data.password === 'admin123') {
-      sessionStorage.setItem(
+      localStorage.setItem(
         'user',
         JSON.stringify({ ...data, name: 'AdminLift' }),
       );
