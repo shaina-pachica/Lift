@@ -63,8 +63,8 @@ model Member {
 
 model Walkin {
   id      Int  @id @default(autoincrement())
-  geor_id Int
-  goer    Goer @relation(fields: [geor_id], references: [id])
+  goer_id Int
+  goer    Goer @relation(fields: [goer_id], references: [id])
 }
 
 model Attendance {
