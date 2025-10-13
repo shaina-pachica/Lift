@@ -1,4 +1,5 @@
-# ❚█══█❚ 
+# ❚█══█❚
+
 # Lift Gym Management System (Open-Source)
 
 **Lift** is a modern, open-source gym management platform built for independent fitness centers and startups. Designed with scalability and simplicity in mind, it streamlines everyday operations—from membership tracking to payment management—through an intuitive admin interface.
@@ -24,27 +25,26 @@ The system currently focuses on the **Admin Operations**, empowering gym owners 
 
 ## 🧩 Features
 
-| MODULE | DESC |
-|--------|--------------|
+| MODULE        | DESC                                                     |
+| ------------- | -------------------------------------------------------- |
 | **Dashboard** | View summaries of members, revenue, and active check-ins |
-| **Members** | Add, edit, and track gym-goer profiles |
-| **Check-In** | Record attendance and manage live gym entries |
-| **Payments** | Track payments, renewals, and outstanding balances |
-| **Promo** | Create and manage active promotions |
-| **Settings** | Configure environment, access, and preferences |
+| **Members**   | Add, edit, and track gym-goer profiles                   |
+| **Check-In**  | Record attendance and manage live gym entries            |
+| **Payments**  | Track payments, renewals, and outstanding balances       |
+| **Promo**     | Create and manage active promotions                      |
+| **Settings**  | Configure environment, access, and preferences           |
 
 ---
 
 ## 🏗️ Tech Stack
 
-| Layer | Technologies |
-|-------|---------------|
-| **Frontend** | React, TypeScript, Vite, Tailwind CSS, ShadCN UI |
-| **Backend** | Node.js, Express.js |
-| **Database** | PostgreSQL (via Prisma ORM) |
-| **Deployment** | Docker* |
-| **Design System** | ShadCN / TweakCN with OKLCH color palette |
-
+| Layer             | Technologies                                     |
+| ----------------- | ------------------------------------------------ |
+| **Frontend**      | React, TypeScript, Vite, Tailwind CSS, ShadCN UI |
+| **Backend**       | Node.js, Express.js                              |
+| **Database**      | PostgreSQL (via Prisma ORM)                      |
+| **Deployment**    | Docker\*                                         |
+| **Design System** | ShadCN / TweakCN with OKLCH color palette        |
 
 ---
 
@@ -77,6 +77,7 @@ npm run dev
 ```
 
 ## 🧱 Project Structure
+
 ```pgsql
 lift/
 ├── client/
@@ -99,7 +100,9 @@ lift/
 ```
 
 ## 🎨 Brand Identity
+
 Lift’s design system is powered by **ShadCN / TweakCN**, customized with an **OKLCH-based** palette for balanced contrast and accessibility.
+
 ```css
 :root {
   --background: oklch(1 0 0);
@@ -108,6 +111,7 @@ Lift’s design system is powered by **ShadCN / TweakCN**, customized with an **
   --primary-foreground: oklch(0.97 0 0);
 }
 ```
+
 > The UI is designed for clarity, simplicity, and scalability — mirroring the vision of lifting gym operations to the digital era.
 
 ---
@@ -123,4 +127,4 @@ We encourage developers, gym owners, and contributors to share ideas, report iss
 
 This project is distributed under the MIT License.
 See the LICENSE
- file for more information.
+file for more information.
