@@ -112,6 +112,13 @@ Lift’s design system is powered by **ShadCN / TweakCN**, customized with an **
 
 ---
 
+## 🤝 Open Source & Collaboration
+
+Lift is open source and welcomes community contributions.
+We encourage developers, gym owners, and contributors to share ideas, report issues, or participate in active development.
+
+---
+
 ## ⚖️ License
 
 This project is distributed under the MIT License.
